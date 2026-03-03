@@ -1,8 +1,15 @@
 import React from 'react'
+import {Header} from "../../../components";
 
 function AllUsers() {
     return (
-        <div>Users Table</div>
+        <main className="dashboard wrapper">
+            <Header
+                title="trips page"
+                description="check out our current users "
+            />
+            All users Page Contents
+        </main>
     )
 }
 
