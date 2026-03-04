@@ -2,14 +2,10 @@ import React from 'react'
 import {Header, StatsCard, TripCard} from "../../../components";
 import {dashboardStats,user,allTrips} from "~/constants";
 import {start} from "node:repl";
-import type { Route } from './+types/dashboard';
-import {getUser} from "~/appwrite/auth";
-
 
 const {totalUsers, usersJoined,totalTrips,tripsCreated,userRole} = dashboardStats;
-export const clientLoader= async ()=>await getUser()
-const Dashboard = ({ loaderData }: Route.ComponentProps) => {
-const user=loaderData as User | null;
+const Dashboard = () => {
+
     return (
         <main className="dashboard wrapper">
             <Header
@@ -40,9 +36,6 @@ const user=loaderData as User | null;
             </section>
             <section className="flex flex-col gap-6">
                 <h1 className="text-xl font-semibold text-dark-100">Created Trips </h1>
-            </section>
-            <section className="flex flex-col gap-6">
-                <h1 className="text-xl font-semibold text-dark-100">Created Trips </h1>
                 <div className='trip-grid'>
                     {allTrips.map((trip) => (
                         <TripCard
@@ -57,8 +50,8 @@ const user=loaderData as User | null;
                     ))}
 
 
-            </div>
-        </section>
+                </div>
+            </section>
 
         </main>
     )

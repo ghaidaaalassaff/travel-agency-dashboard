@@ -1,4 +1,5 @@
-﻿export const world_map: object = {
+﻿
+export const world_map: object = {
   type: "FeatureCollection",
   crs: { type: "name", properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" } },
   features: [
