@@ -7,7 +7,7 @@ export const getExistingUser = async (id: string) => {
         const { documents, total } = await database.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.userCollectionId,
-            [Query.equal("accountId", id)]
+            [Query.equal("AccountId", id)]
         );
         return total > 0 ? documents[0] : null;
     } catch (error) {
@@ -31,11 +31,11 @@ export const storeUserData = async () => {
             appwriteConfig.userCollectionId,
             ID.unique(),
             {
-                accountId: user.$id,
+                AccountId: user.$id,
                 email: user.email,
                 name: user.name,
                 imageUrl: profilePicture,
-                joinedAt: new Date().toISOString(),
+                joindAt: new Date().toISOString(),
             }
         );
 
@@ -44,6 +44,7 @@ export const storeUserData = async () => {
         console.error("Error storing user data:", error);
     }
 };
+
 
 const getGooglePicture = async (accessToken: string) => {
     try {
@@ -90,8 +91,8 @@ export const getUser = async () => {
             appwriteConfig.databaseId,
             appwriteConfig.userCollectionId,
             [
-                Query.equal("accountId", user.$id),
-                Query.select(["name", "email", "imageUrl", "joinedAt", "accountId"]),
+                Query.equal("AccountId", user.$id),
+                Query.select(["name", "email", "imageUrl", "joindAt", "AccountId"]),
             ]
         );
 
