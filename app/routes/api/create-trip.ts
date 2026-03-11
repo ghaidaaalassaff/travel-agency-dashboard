@@ -1,8 +1,9 @@
-import {type ActionFunctionArgs, data} from "react-router";
 import {GoogleGenerativeAI} from "@google/generative-ai";
-import {parseMarkdownToJson} from "~/lib/utils";
+import {parseMarkdownToJson, parseTripData} from "~/lib/utils";
 import {appwriteConfig, database} from "~/appwrite/clints";
 import {ID} from "appwrite";
+import {type ActionFunctionArgs, data} from "react-router";
+import {createProduct} from "~/lib/stripe";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const {
@@ -84,12 +85,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             appwriteConfig.tripCollectionId,
             ID.unique(),
             {
-                tripDetails: JSON.stringify(trip),
-                createdAt: new Date().toISOString(),
+                tripDetail: JSON.stringify(trip),
+                createdTime: new Date().toISOString(),
                 imageUrls,
                 userId,
             }
         )
+
+        const tripDetail = parseTripData(result.tripDetail) as Trip;
+
+
+
         return data({ id: result.$id })
     } catch (e) {
         console.error('Error generating travel plan: ', e);

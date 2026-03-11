@@ -1,7 +1,7 @@
 import {Link, NavLink, useLoaderData, useNavigate} from "react-router";
-import {sidebarItems} from "~/constants";
 import {cn} from "~/lib/utils";
 import {logoutUser} from "~/appwrite/auth";
+import {sidebarItems} from "~/constants";
 
 const NavItems = ({ handleClick }: { handleClick?: () => void}) => {
     const user = useLoaderData();

@@ -51,7 +51,7 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps ) => {
     const [formData, setFormData] = useState<TripFormData>({
         country: countries[0]?.name || '',
         travelStyle: '',
-        interest: '',
+        interests: '',
         budget: '',
         duration: 0,
         groupType: ''
@@ -66,7 +66,7 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps ) => {
         if(
             !formData.country ||
             !formData.travelStyle ||
-            !formData.interest ||
+            !formData.interests ||
             !formData.budget ||
             !formData.groupType
         ) {
@@ -88,14 +88,14 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps ) => {
         }
 
         try {
-            const response = await fetch('/api/create-trip', {
+            const response = await fetch("/api/create-trip",{
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     country: formData.country,
                     numberOfDays: formData.duration,
                     travelStyle: formData.travelStyle,
-                    interests: formData.interest,
+                    interests: formData.interests,
                     budget: formData.budget,
                     groupType: formData.groupType,
                     userId: user.$id
